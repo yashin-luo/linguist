@@ -1,5 +1,4 @@
 require 'escape_utils'
-require 'pygments'
 require 'yaml'
 begin
   require 'yajl'
@@ -286,9 +285,6 @@ module Linguist
       # Set aliases
       @aliases = [default_alias_name] + (attributes[:aliases] || [])
 
-      # Lookup Lexer object
-      @lexer = Pygments::Lexer.find_by_name(attributes[:lexer] || name) ||
-        raise(ArgumentError, "#{@name} is missing lexer")
 
       @tm_scope = attributes[:tm_scope] || begin
         context = case @type
@@ -500,7 +496,8 @@ module Linguist
     #
     # Returns html String
     def colorize(text, options = {})
-      lexer.highlight(text, options)
+      #lexer.highlight(text, options)
+      text
     end
 
     # Public: Return name as String representation
