@@ -2,7 +2,6 @@ require 'linguist/generated'
 require 'charlock_holmes'
 require 'escape_utils'
 require 'mime/types'
-require 'pygments'
 require 'yaml'
 
 module Linguist
@@ -318,7 +317,8 @@ module Linguist
     #
     # Returns a Lexer.
     def lexer
-      language ? language.lexer : Pygments::Lexer.find_by_name('Text only')
+      #language ? language.lexer : Pygments::Lexer.find_by_name('Text only')
+      language ? language.lexer : nil
     end
 
     # Internal: Get the TextMate compatible scope for the blob
